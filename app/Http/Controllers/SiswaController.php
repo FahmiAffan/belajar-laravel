@@ -16,17 +16,14 @@ class SiswaController extends Controller
     public function index()
     {
         //
-        $datasiswa = Siswa::get();
-
-        $response =[
-            "msg" => "null",
-            "data" => "$datasiswa",
-        ];
-        return response()->json($response);
+        $datasiswa = Siswa::all();
+        return response()->json([
+            'data' => $datasiswa
+        ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new resource.xw
      *
      * @return \Illuminate\Http\Response
      */
@@ -44,6 +41,16 @@ class SiswaController extends Controller
     public function store(Request $request)
     {
         //
+        $siswa = Siswa::create([
+            'nama_siswa' => $request->nama_siswa,
+            'kelas' => $request->kelas,
+            'jurusan' => $request->jurusan,
+            'alamat' => $request->alamat
+        ]);
+
+        return response()->json([
+            'data' => $siswa
+        ]);
     }
 
     /**
@@ -75,9 +82,23 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Siswa $siswa )
     {
-        //
+        $siswa->update([
+            'nama_siswa' => $request->nama_siswa,
+            'kelas' => $request->kelas,
+            'jurusan' => $request->jurusan,
+            'alamat' => $request->alamat
+        ]);
+        // $siswa->nama_siswa =$request->nama_siswa;
+        // $siswa->kelas = $request->kelas;
+        // $siswa->jurusan = $request->jurusan;
+        // $siswa->alamat = $request->alamat;
+        return response()->json(
+            [
+                'data' => $siswa,
+                'msg' => "data success updated"
+            ]);
     }
 
     /**
@@ -86,8 +107,12 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Siswa $siswa)
     {
         //
+        $siswa->delete();
+        return response()->json([
+            'msg' => 'customer deleted'
+        ], 204);
     }
 }

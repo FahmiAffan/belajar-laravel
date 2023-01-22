@@ -19,6 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/data-siswa' , [SiswaController::class, 'index']);
+Route::get('/siswa' , [SiswaController::class, 'index']);
 
-Route::post('/tambah-siswa' , [SiswaController::class, 'create']);
+Route::post('/siswa/create' , [SiswaController::class, 'store']);
