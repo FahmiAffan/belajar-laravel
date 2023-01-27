@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Siswa;
+use App\Models\Guru;
 use Illuminate\Http\Request;
 
-class SiswaController extends Controller
+class GuruController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,11 @@ class SiswaController extends Controller
     public function index()
     {
         //
-        $siswa = Siswa::all();
-        return response()->json($siswa);
+        $guru = Guru::all();
+        return response()->json([
+            "msg" => "Success",
+            "data" => "$guru",
+        ]);
     }
 
     /**
@@ -38,37 +41,40 @@ class SiswaController extends Controller
     public function store(Request $request)
     {
         //
-        $siswa = Siswa::create([
-            "nama_siswa" => $request->nama_siswa,
-            "jurusan" => $request->jurusan,
-            "kelas" => $request->kelas,
-            "jenis_kelamin" => $request->jenis_kelamin,
-            "alamat" => $request->alamat
+        $request->validate([
+            'nama_guru' => 'required',
+            'mata_pelajaran' => 'required',
+            'jenis_kelamin' => 'required',
         ]);
+        $guru = Guru::create($request->all());
         return response()->json([
             "msg" => "Data Berhasil Di Buat",
-            "data"=> "$siswa",
+            "data" => "$guru"
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Siswa  $siswa
+     * @param  \App\Models\Guru  $guru
      * @return \Illuminate\Http\Response
      */
-    public function show(Siswa $siswa)
+    public function show(Guru $guru)
     {
         //
+        return response()->json([
+            "msg" => "data berhasil ditampilkan",
+            "data" => "$guru"
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Siswa  $siswa
+     * @param  \App\Models\Guru  $guru
      * @return \Illuminate\Http\Response
      */
-    public function edit(Siswa $siswa)
+    public function edit(Guru $guru)
     {
         //
     }
@@ -77,40 +83,40 @@ class SiswaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Siswa  $siswa
+     * @param  \App\Models\Guru  $guru
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Siswa $siswa, $id)
+    public function update(Request $request, Guru $guru , $id)
     {
         //
-        $siswa = Siswa::find($id)->update([
-            'nama_siswa' => $request->nama_siswa,
-            'jurusan' => $request->jurusan,
-            'kelas' => $request->nama_siswa,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'alamat' => $request->alamat
+        $request->validate([
+            'nama_guru' => 'required',
+            'mata_pelajaran' => 'required',
+            'jenis_kelamin' => 'required',
         ]);
 
+        $guru = Guru::find($id)->update($request->all());
+
         return response()->json([
-            "msg" => "data berhasil di update",
-            "data" => "$siswa"
+            "msg" => "Berhasil Update",
+            "data" => "$guru"
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Siswa  $siswa
+     * @param  \App\Models\Guru  $guru
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Siswa $siswa, $id)
+    public function destroy(Guru $guru,$id)
     {
         //
-        $siswa = Siswa::find($id)->delete();
+        $guru = Guru::find($id)->delete();
         return response()->json([
-            "msg" => "data berhasil di hapus",
-            "data" => "$siswa",
-            "id" => "$id"
+            "data" => $guru,
+            "id" => $id,
+            "msg" => "Data berhasil di hapus"
         ]);
     }
 }
