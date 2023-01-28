@@ -9,7 +9,6 @@
 </head>
 <body>
     <h1>Hai ini home</h1>
-    {{ nama }}
     <button onclick=""></button>
 </body>
 </html>

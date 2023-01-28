@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class SiswaController extends Controller
 {
@@ -16,7 +17,12 @@ class SiswaController extends Controller
     {
         //
         $siswa = Siswa::all();
+        // dd($siswa);
+        return view('siswa.index' , array(
+            'siswa' => $siswa
+        ));
         return response()->json($siswa);
+        dd($siswa);
     }
 
     /**

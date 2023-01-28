@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 
 // Route::get('/siswa' , [SiswaController::class, 'index']);
+Route::get('/siswa' , [SiswaController::class, 'index']);
 
 Route::post('/siswa/create' , [SiswaController::class, 'store']);
 
