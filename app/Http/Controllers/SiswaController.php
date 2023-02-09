@@ -18,9 +18,9 @@ class SiswaController extends Controller
         //
         $siswa = Siswa::all();
         // dd($siswa);
-        return view('siswa.index' , array(
-            'siswa' => $siswa
-        ));
+        // return view('siswa.index' , array(
+        //     'siswa' => $siswa
+        // ));
         return response()->json($siswa);
         dd($siswa);
     }

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\KelasController;
+use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\SiswaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,5 +27,10 @@ Route::resource('data-siswa' , SiswaController::class);
 
 //Guru
 Route::resource('data-guru' , GuruController::class);
+
+Route::resource('peminjaman' , PeminjamanController::class);
+
+Route::resource('kelas', KelasController::class);
+
 // Route::get('/data-guru' , GuruController::class ['index']);
 // Route::post('/data-guru' , GuruController::class ['update']);

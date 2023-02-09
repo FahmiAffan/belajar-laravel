@@ -17,10 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('nama_siswa');
             $table->string('jurusan');
-            $table->string('jenis_kelamin');
+            $table->enum('jenis_kelamin',['laki-laki','perempuan']);
             $table->string('alamat');
+            $table->foreignId('id_kelas')->references('id_kelas')->on('kelas')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
+
+
     }
 
     /**

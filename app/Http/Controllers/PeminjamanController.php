@@ -16,6 +16,10 @@ class PeminjamanController extends Controller
     public function index()
     {
         //
+        $data = peminjaman::get()
+        ->join('kelas', 'peminjaman.id_kelas', '=', 'kelas.id')
+        ->join('siswas', 'peminjaman.id_siswa', '=', 'siswas.id');
+        return response()->json($data);
     }
 
     /**
