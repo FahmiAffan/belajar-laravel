@@ -13,17 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('siswas', function (Blueprint $table) {
+        Schema::create('kelas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_siswa');
-            $table->string('jurusan');
-            $table->enum('jenis_kelamin',['laki-laki','perempuan']);
-            $table->string('alamat');
-            $table->foreignId('id_kelas')->references('id_kelas')->on('kelas')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('nama_kelas');
             $table->timestamps();
         });
-
-
     }
 
     /**
@@ -33,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('siswas');
+        Schema::dropIfExists('kelas');
     }
 };

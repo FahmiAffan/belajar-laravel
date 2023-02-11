@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id('id_peminjaman');
             $table->unsignedBigInteger('id_siswa')->index();
-            $table->foreign('id_siswa')->references('id')->on('siswas')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_siswa')->references('id')->on('siswa')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('id_buku')->index();
-            $table->foreign('id_buku')->references('id')->on('bukus')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_buku')->references('id')->on('buku')->onDelete('cascade')->onUpdate('cascade');
             $table->date('tanggal_pinjam');
             $table->date('tanggal_kembali');
             $table->enum('status', ['pinjam', 'kembali']);

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorekelasRequest;
 use App\Http\Requests\UpdatekelasRequest;
-use App\Models\kelas;
+use App\Models\Kelas;
 use Illuminate\Support\Facades\Validator;
 
 class KelasController extends Controller
@@ -17,8 +17,8 @@ class KelasController extends Controller
     public function index()
     {
         //
-        $data = kelas::all();
-        return response()->array($data);
+        $data = Kelas::all();
+        return response()->json($data);
     }
 
     /**
@@ -40,17 +40,22 @@ class KelasController extends Controller
     public function store(StorekelasRequest $request)
     {
         //
-        $validate = Validator::make($request->all(), [
-            'nama_kelas' => 'required'
+        // $validate = Validator::make($request->all(), [
+        //     'nama_kelas' => 'required'
+        // ]);
+        // if($validate){
+        //     $data = kelas::create([
+        //         'nama_kelas' => $request->nama_kelas
+        //     ]);
+        //     return response()->json(["msg" => "data berhasil di inputkan" ,"data" => $data]);
+        // }else{
+        //     return response()->json(["msg"=>"Data Gagal Di iputkan"]);
+        // }
+
+        $data = Kelas::create([
+            'nama_kelas' => $request->nama_kelas
         ]);
-        if($validate){
-            $data = kelas::create([
-                'nama_kelas' => $request->nama_kelas
-            ]);
-            return response()->json(["msg" => "data berhasil di inputkan" ,"data" => $data]);
-        }else{
-            return response()->json(["msg"=>"Data Gagal Di iputkan"]);
-        }
+        return response()->json($data);
     }
 
     /**
