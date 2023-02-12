@@ -11,10 +11,10 @@ class Kelas extends Model
 
     protected $table = 'kelas';
 
-    protected $guarded = ['id_kelas'];
+    protected $guarded = ['id'];
 
     public function kelas()
     {
-        return $this->belongsTo(Siswa::class, 'id_kelas', 'id_kelas');
+        return $this->belongsTo(Siswa::class, 'id_kelas', 'id');
     }
 }
