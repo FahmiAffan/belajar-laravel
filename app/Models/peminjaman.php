@@ -13,4 +13,9 @@ class peminjaman extends Model
     protected $table = 'peminjaman';
 
     protected $guarded = ['id'];
+
+    protected function peminjaman(){
+        return $this->hasMany(Siswa::class);
+        return $this->hasOne(Buku::class);
+    }
 }

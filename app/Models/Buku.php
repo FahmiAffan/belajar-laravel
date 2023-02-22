@@ -12,4 +12,8 @@ class Buku extends Model
     protected $table = 'buku';
 
     protected $guarded = ['id'];
+
+    protected function buku(){
+        return $this->belongsToMany(peminjaman::class);
+    }
 }

@@ -17,9 +17,7 @@ class BukuController extends Controller
     {
         //
         $buku = Buku::all();
-        return response()->json([
-            "data" => "$buku",
-        ]);
+        return response()->json($buku);
     }
 
     /**
@@ -41,6 +39,10 @@ class BukuController extends Controller
     public function store(StoreBukuRequest $request)
     {
         //
+        $data = Buku::create([
+            'nama_buku' => $request->nama_buku
+        ]);
+        return response()->json($data);
     }
 
     /**
@@ -72,9 +74,13 @@ class BukuController extends Controller
      * @param  \App\Models\Buku  $buku
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBukuRequest $request, Buku $buku)
+    public function update(UpdateBukuRequest $request, Buku $buku, $id)
     {
         //
+        $data = $buku->find($id)->update([
+            'nama_buku' => $request->nama_buku
+        ]);
+        return response()->json($data);
     }
 
     /**
@@ -83,8 +89,13 @@ class BukuController extends Controller
      * @param  \App\Models\Buku  $buku
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Buku $buku)
+    public function destroy(Buku $buku , $id)
     {
         //
+        $data = $buku->find($id)->delete();
+        return response()->json([
+            "msg" => "data berhasil dihapus",
+            "data" => $data
+        ]);
     }
 }

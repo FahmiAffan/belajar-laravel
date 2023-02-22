@@ -10,10 +10,11 @@ class Siswa extends Model
     use HasFactory;
     protected $table = 'siswa';
 
-    protected $guarded = ['id_kelas'];
+    protected $guarded = ['id'];
 
     public function siswa()
     {
-        return $this->belongsTo(Kelas::class, 'id_kelas', 'id');
+        return $this->hasOne(Kelas::class);
+        return $this->belongsToMany(peminjaman::class);
     }
 }

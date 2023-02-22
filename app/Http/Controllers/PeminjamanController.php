@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\peminjaman;
 use App\Http\Requests\StorepeminjamanRequest;
 use App\Http\Requests\UpdatepeminjamanRequest;
+// use Illuminate\Support\Facades\DB;
 
 class PeminjamanController extends Controller
 {
@@ -16,9 +17,9 @@ class PeminjamanController extends Controller
     public function index()
     {
         //
-        $data = peminjaman::get()
-        ->join('kelas', 'peminjaman.id_kelas', '=', 'kelas.id')
-        ->join('siswas', 'peminjaman.id_siswa', '=', 'siswas.id');
+        $data = peminjaman::all();
+        // ->join('kelas', 'peminjaman.id_kelas', '=', 'kelas.id');
+        // $data = peminjaman::join('siswa', 'peminjaman.id_kelas', '=', 'siswa.id');
         return response()->json($data);
     }
 
@@ -41,6 +42,14 @@ class PeminjamanController extends Controller
     public function store(StorepeminjamanRequest $request)
     {
         //
+        $data = peminjaman::create([
+            'id_siswa' => $request->id_siswa,
+            'id_buku' => $request->id_buku,
+            'tanggal_pinjam' => $request->tanggal_pinjam,
+            'tanggal_kembali' => $request->tanggal_kembali,
+            'status' => $request->status
+        ]);
+        return response()->json($data);
     }
 
     /**

@@ -16,13 +16,12 @@ class SiswaController extends Controller
     public function index()
     {
         //
-        $siswa = Siswa::all()->join('kelas', 'siswa.id_kelas', '=', 'kelas.id');
+        $siswa = Siswa::get()->join('kelas', 'siswa.id_kelas', '=', 'kelas.id');
         // dd($siswa);
         // return view('siswa.index' , array(
         //     'siswa' => $siswa
         // ));
         return response()->json($siswa);
-        dd($siswa);
     }
 
     /**
@@ -50,12 +49,12 @@ class SiswaController extends Controller
             "jenis_kelamin" => $request->jenis_kelamin,
             "alamat" => $request->alamat,
             "id_kelas" => $request->id_kelas,
-        ])->join('kelas', 'siswa.id_kelas', '=', 'kelas.id');
-        // return response()->json([
-        //     "msg" => "Data Berhasil Di Buat",
-        //     "data"=> "$siswa",
-        // ]);
-        dd($siswa);
+        ]);
+        return response()->json([
+            "msg" => "Data Berhasil Di Buat",
+            "data"=> "$siswa",
+        ]);
+        // dd($siswa);
     }
 
     /**
@@ -93,7 +92,7 @@ class SiswaController extends Controller
         $siswa = Siswa::find($id)->update([
             'nama_siswa' => $request->nama_siswa,
             'jurusan' => $request->jurusan,
-            'kelas' => $request->nama_siswa,
+            'id_kelas' => $request->id_kelas,
             'jenis_kelamin' => $request->jenis_kelamin,
             'alamat' => $request->alamat
         ]);
