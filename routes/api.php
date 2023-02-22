@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KelasController;
@@ -47,6 +47,10 @@ Route::controller(TestingController::class)->group(function () {
 
 //JWT-Authx
 
-Route::namespace('Auth')->group(function(){
-    Route::post('login', 'LoginController');
-});
+/**
+ * route "/register"
+ * @method "POST"
+ */
+Route::post('/register',RegisterController::class)->name('register');
+
+Route::post('/login', LoginController::class)->name('login');
